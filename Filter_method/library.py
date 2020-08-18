@@ -35,11 +35,20 @@ def convert_continuousDf_rankingDf(data):
 
 #CREATE CONTIGENCY TABLE FROM 2 CATEGORY VARIABLE WITH 2 NAME OF 2 FEATURES(COLUMNS NAME) OF A DATAFRAME
 def create_contigency_from_2CA(df, f1, f2):
-    count = np.zeros((len(df[f1].unique()), len(df[f2].unique())))
-    for ix, i in enumerate(df[f1].unique(),start=0):
-        for jx, j in enumerate(df[f2].unique(), start= 0):
+    count = np.zeros((len(df[df.columns[f1]].unique()), len(df[df.columns[f2]].unique())))
+    for ix, i in enumerate(df[df.columns[f1]].unique(),start=0):
+        for jx, j in enumerate(df[df.columns[f2]].unique(), start= 0):
             count[ix,jx] = 0
             for x in range(len(df)):
-                if (df[f1][x] == i and df[f2][x]== j):
+                if (df[df.columns[f1]][x] == i and df[df.columns[f2]][x]== j):
                     count[ix,jx]+=1
     return count
+
+#Check if a array is cagorical or continuous
+def is_categorical_columns(arr):
+    a = np.array(arr)
+    uniq_value = np.unique(a)
+    if len(uniq_value)/len(a) <= 0.1:
+        return True
+    else:
+        return False
