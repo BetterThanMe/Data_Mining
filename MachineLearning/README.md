@@ -1,4 +1,4 @@
-#Install package by command: $ sudo pip install ML-pkg-Minh
+Install package by command: $ sudo pip install ML-pkg-Minh
 
 This package contain some machine learning model:
 	- Support vector regression
